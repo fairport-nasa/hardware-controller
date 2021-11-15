@@ -2,6 +2,7 @@ from influxdb import InfluxDBClient
 import qwiic
 import os
 import random
+import datetime
 import time
 
 device = qwiic.create_device("QwiicProximity")
@@ -14,7 +15,7 @@ while True:
     json_body = [
     {
         "measurement": "proximity",
-        "time":"2021-11-03T23:00:"+str(random.randint(0,60))+"z",
+        "time": datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%Sz"),
         "fields": {
             "value": device.proximity
         }
@@ -25,4 +26,4 @@ while True:
     os.system("clear")
     for r in result.get_points():
         print("value: ",r["value"])
-    time.sleep(12)
+    time.sleep(2)
