@@ -1,7 +1,6 @@
 from influxdb import InfluxDBClient
 import qwiic
 import os
-import random
 import datetime
 import time
 
